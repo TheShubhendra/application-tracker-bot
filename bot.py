@@ -6,7 +6,6 @@ import logging
 import os
 TOKEN = os.environ.get("TOKEN")
 PORT = os.environ.get("PORT",5000)
-updater.bot.setWebhook("https://application-tracker-bot.herokuapp.com/"+TOKEN)
 def getStatus(no):
   print(no)
   if not no.isdigit():
@@ -54,6 +53,7 @@ def main():
 
   handler = MessageHandler(Filters.text,status)
   dispatcher.add_handler(handler)
+  updater.bot.setWebhook("https://application-tracker-bot.herokuapp.com/"+TOKEN)
   updater.start_webhook(listen = "0.0.0.0", port = int(PORT), url_path = TOKEN)
 if __name__ == '__main__':
   main()
